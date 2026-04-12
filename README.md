@@ -37,5 +37,5 @@ Diamond pricing is influenced by multiple physical and quality attributes. This 
 <img width="247" height="77" alt="image" src="https://github.com/user-attachments/assets/cffb8024-2f73-4362-a7d8-b8e45f302e7c" />
 
 ## Actual vs Predicted Prices
-<img width="770" height="495" alt="image" src="https://github.com/user-attachments/assets/b3365566-e2e6-4677-8972-8cf999c309d8" />
+<img width="855" height="506" alt="image" src="https://github.com/user-attachments/assets/8bd35226-3871-439b-9705-c39ee39f2e9f" />
 
