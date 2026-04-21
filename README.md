@@ -1,11 +1,13 @@
 # Diamond-price-prediction 
 # By: ABeer Al-Zebda | Machine Learning Engineer
-A supervised machine learning project that predicts diamond prices using regression techniques. The model is trained on the classic Diamonds dataset (53,940 samples) and leverages both numerical and categorical features to produce accurate price estimates.
+A supervised machine learning project that predicts diamond prices using advanced regression techniques. Trained on the classic Diamonds dataset (53,940 samples), the project compares Linear Regression vs XGBoost Regressor to deliver highly accurate price estimates.
 ![1_IT2AEMBYOt5qICLjpuwbyg](https://github.com/user-attachments/assets/5e174ba1-ef26-4199-b0e0-4620690094b5)
 
 
 # Overview
-Diamond pricing is influenced by multiple physical and quality attributes. This project builds a full ML pipeline — from raw data preprocessing to final prediction — using Linear Regression. A key challenge with this dataset is that diamond prices are right-skewed and Linear Regression has no lower bound constraint, meaning it can freely predict negative values. To solve this, we apply np.log() on the target variable during training, then use np.exp() on predictions to convert them back to real prices — guaranteeing all outputs are always positive.
+Diamond pricing depends on physical dimensions, quality grades, and cut precision. This project builds a complete ML pipeline—from data preprocessing to production-ready predictions—comparing Linear Regression and XGBoost Regressor.
+
+## Key Innovation: Diamond prices exhibit right-skewed distribution, and Linear Regression can predict impossible negative prices. Solution: Applied np.log() transformation on target during training, then np.exp() on predictions—guaranteeing positive prices only.
 
 ## Dataset
 - link: https://www.kaggle.com/datasets/shivam2503/diamonds
@@ -53,7 +55,7 @@ Diamond pricing is influenced by multiple physical and quality attributes. This 
 - One Hot Encoder for categorical Features using OneHotEncoder and pipeline
 - Column Transformer 
   
-## Prediction Model
+## LinearRegression Model
 <img width="247" height="77" alt="image" src="https://github.com/user-attachments/assets/cffb8024-2f73-4362-a7d8-b8e45f302e7c" />
 
 ## Evaluate the model
@@ -62,11 +64,37 @@ The model evaluation results :
 - RMSE = 0.158
 - R^2  = 0.975
   
-## Actual vs Predicted Prices
+## Actual vs Predicted Prices Using LinearRegression
 <img width="855" height="506" alt="image" src="https://github.com/user-attachments/assets/8bd35226-3871-439b-9705-c39ee39f2e9f" />
+
+# xgboost Model
+<img width="787" height="302" alt="image" src="https://github.com/user-attachments/assets/03439df9-2bc1-4dc8-9945-c0fad1835ed5" />
+
+## Evaluate the model
+The model evaluation results :
+- MAE  = 0.061
+- RMSE = 0.084
+- R^2  = 0.993
+
+## Actual vs Predicted Prices Using xgboost
+<img width="807" height="503" alt="image" src="https://github.com/user-attachments/assets/7bfd27fa-95eb-4090-9bc0-4901f2667e23" />
+
 
 ## Predict on new data 
 I add a new data to test the model and it shows a realistic and logical results for price with a closer value for the real data
 
 ## Conclusion
-Through analyzing the model's coefficients, we can conclude that each feature has an effect on the target variable (price), but to varying degrees. Some features influence the price positively, while others have a negative impact. The predicted prices are close to the actual prices, which indicates that the model is performing well and has learned the underlying patterns in the data. The biggest challenge I faced during model building was the appearance of negative predicted prices, which is physically impossible for diamond pricing. After researching the issue, I found that applying np.log() on the target variable during training and then using np.exp() to convert predictions back to real prices was an effective solution. This approach eliminated all negative predictions and resulted in significantly better results. Finally, while the model performs reasonably well, there is still room for improvement. Feature engineering could be a strong next step — creating new meaningful features from the existing ones such as volume (x * y * z) or carat-to-depth ratio may help the model capture more complex relationships and improve prediction accuracy.
+The project successfully built a production-ready diamond pricing pipeline, with **XGBoost outperforming Linear Regression** (R² 0.993 vs 0.975). 
+
+**Key Technical Achievement**: Solved negative price prediction using **log-transform + exp inverse**—eliminating impossible outputs while handling skewed distribution perfectly.
+
+**XGBoost Excellence**: Achieved **MAE 0.061** and **RMSE 0.084**, demonstrating superior pattern recognition across 53k+ samples.
+
+**Business Impact**: Accurate pricing model enables optimal pricing strategies, inventory valuation, and competitive market positioning.
+
+**Future Enhancements**:
+- **Feature Engineering**: Volume (`x*y*z`), aspect ratios, symmetry scores
+- **Ensemble**: Stacking XGBoost + LightGBM
+- **Hyperparameter Optimization**: Bayesian optimization for peak performance
+
+This pipeline transforms raw gemstone data into actionable business intelligence!
